@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Counter</title>
+<style>
+  body{font-family:sans-serif;text-align:center;margin-top:20vh}
+  #n{font-size:6rem;margin:0}
+</style>
+</head>
+<body>
+<p id="n">0</p>
+<p>Counts up by 1 every 2 minutes</p>
+<p id="next"></p>
+<script>
+  const START = new Date("2026-10-24T00:00:00Z").getTime();
+  const INTERVAL = 2 * 60 * 1000;
+  function update() {
+    const elapsed = Date.now() - START;
+    document.getElementById("n").textContent = Math.floor(elapsed / INTERVAL);
+    const left = Math.ceil((INTERVAL - (elapsed % INTERVAL)) / 1000);
+    document.getElementById("next").textContent = "Next number in " + left + "s";
+  }
+  update();
+  setInterval(update, 1000);
+</script>
+</body>
+</html>
